@@ -1,0 +1,22 @@
+beginfill, black
+circle, 20, 1, black
+endfill
+penup
+goto, 120, 0, 1, black
+pendown
+beginfill, black
+circle, 20, 1, black
+endfill
+penup
+goto, 150, 40, 1,
+pendown
+beginfill, yellow
+goto, -30, 40, 1,
+goto, -30, 70, 1,black
+goto, 60, 70, 1, black
+goto, 60, 100, 1,
+goto, 90, 100, 1,
+goto, 115, 70, 1,
+goto, 150, 70, 1,
+goto, 150, 40, 1, black
+endfill
