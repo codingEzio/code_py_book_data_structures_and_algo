@@ -1,54 +1,47 @@
 import turtle
 
-FILENAME: str = "./src/turtle_commands.txt"
+FILENAME: str = "./src/turtle_commands_multiplelines.txt"
 
 
 def main():
     t = turtle.Turtle()
     screen = t.getscreen()
 
-    with open(file=FILENAME, mode="r") as f:
-        for line in f:
-            text = line.strip()
-            command_list = text.split(",")
-            command = command_list[0]
+    with open(file=FILENAME, mode="r") as file:
+        command = file.readline().strip()
 
+        while command != "":
             if command == "goto":
-                x, y = float(command_list[1]), float(command_list[1])
-                width = float(command_list[3])
-                color = command_list[4].strip()
+                x, y = float(file.readline()), float(file.readline())
+                width = float(file.readline())
+                color = file.readline().strip()
                 t.width(width=width)
                 t.pencolor(color)
                 t.goto(x, y)
-
             elif command == "circle":
-                radius, width = float(command_list[1]), float(command_list[2])
-                color = command_list[3].strip()
+                radius, width = float(file.readline()), float(file.readline())
+                color = file.readline().strip()
                 t.width(width=width)
                 t.pencolor(color)
                 t.circle(radius=radius)
-
             elif command == "beginfill":
-                color = command_list[1].strip()
-                t.fillcolor(color)
+                color = file.readline().strip()
                 t.begin_fill()
-
             elif command == "endfill":
                 t.end_fill()
-
             elif command == "penup":
                 t.penup()
-
             elif command == "pendown":
                 t.pendown()
-
             else:
                 print(f"Unknown command found in file: {command}")
 
-        t.ht()
+            command = file.readline().strip()
 
+        t.hideturtle()
         screen.exitonclick()
-        print("Program Execution Completed.")
+        print("Program execution completed.")
+
 
 if __name__ == "__main__":
     main()
