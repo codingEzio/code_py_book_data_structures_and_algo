@@ -1,0 +1,17 @@
+Facts
+- Acessing a memory location or storing a val in a memory location is O(1).
+- Acessing a value or stroing a value in a list is O(1) as well.
+- The size doesn't change the time needed to access/store the val in mem/lst.
+
+Here's some operations that take constant time to execute.
+- Add two numbers
+- Multiplication of two numbers
+- Comparing two values
+
+Basically, any arithmetic calculation or comparison can be
+considered as a constant time operation.
+
+Space/Time
+- Space: the amount of RAM needed to solve a problem
+- Time : measure how the number of operations grow as data size grows
+
