@@ -9,3 +9,15 @@ first?
 • Exactly what happens when a return statement is executed?
 • Why should we write recursive functions?
 • What are the computational complexities of various recursive functions?
+
+### Scope
+LEGB: Local -> Enclosing -> Global -> Built-in
+
+### Run-time stack and heap
+The params and body of each func define a scope must be stored somewhere
+within the RAM of a computer. Python splits the RAM up into two parts,
+called "Run-time Stack" (it IS "stack") and the "Heap".
+
+Keyword
+- Stack: first in, last out (stores references to objects (points to the heap))
+- Heap:  the area of RAM where all objects are stored, literally.
