@@ -34,11 +34,26 @@ class PyList:
         self.size = new_len
 
     def append(self, item) -> None:
+        """Append element to the end of the list."""
         if self.num_items == self.size:
             self.__makeroom()
 
         self.items[self.num_items] = item
         self.num_items = self.num_items + 1
+
+    def insert(self, idx: int, elem: int) -> None:
+        """Insert element into either the specified location or the end."""
+        if self.num_items == self.size:
+            self.__makeroom()
+
+        if idx < self.num_items:
+            for j in range(self.num_items - 1, idx - 1, -1):
+                self.items[j + 1] = self.items[j]
+
+            self.items[idx] = elem
+            self.num_items += 1
+        else:
+            self.append(elem)
 
     def __iter__(self) -> IntIteratorOrNone:
         for item in self.items:
@@ -54,6 +69,12 @@ class PyList:
             self.items[index] = val
             return None
         raise IndexError("PyList assignment index out of range.")
+
+    def __delitem__(self, index: int) -> None:
+        i: int
+        for i in range(index, self.num_items - 1):
+            self.items[i] = self.items[i + 1]
+        self.num_items = self.num_items - 1
 
     def __add__(self, other: PyList) -> PyList:
         idx: int
