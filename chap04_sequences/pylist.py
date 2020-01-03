@@ -55,9 +55,13 @@ class PyList:
         else:
             self.append(elem)
 
+    def __len__(self) -> int:
+        return self.num_items
+
     def __iter__(self) -> IntIteratorOrNone:
-        for item in self.items:
-            yield item
+        idx: int
+        for idx in range(self.num_items):
+            yield self.items[idx]
 
     def __getitem__(self, index: int) -> IntOrNone:
         if index >= 0 and index < self.num_items:
@@ -75,6 +79,20 @@ class PyList:
         for i in range(index, self.num_items - 1):
             self.items[i] = self.items[i + 1]
         self.num_items = self.num_items - 1
+
+    def __eq__(self, other: object) -> bool:
+        """See https://stackoverflow.com/a/37557966/6273859"""
+        if not isinstance(other, PyList):
+            return False
+        if self.num_items != other.num_items:
+            return False
+
+        idx: int
+        for idx in range(self.num_items):
+            if self.items[idx] != other.items[idx]:
+                return False
+
+        return True
 
     def __add__(self, other: PyList) -> PyList:
         idx: int
