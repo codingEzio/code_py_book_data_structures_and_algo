@@ -58,10 +58,44 @@ class PyList:
     def __len__(self) -> int:
         return self.num_items
 
+    def __str__(self) -> str:
+        st: str = "["
+
+        idx: int
+        for idx in range(self.num_items):
+            st = st + repr(self.items[idx])
+            if idx < self.num_items - 1:
+                st = st + ", "
+
+        st = st + "]"
+
+        return st
+
+    def __repr__(self) -> str:
+        st: str = "PyList(["
+
+        idx: int
+        for idx in range(self.num_items):
+            st = st + repr(self.items[idx])
+            if idx < self.num_items - 1:
+                st = st + ", "
+
+        st = st + "])"
+
+        return st
+
     def __iter__(self) -> IntIteratorOrNone:
         idx: int
         for idx in range(self.num_items):
             yield self.items[idx]
+
+    def __contains__(self, item) -> bool:
+        idx: int
+        for idx in range(self.num_items):
+            if self.items[idx] == item:
+                return True
+
+        return False
 
     def __getitem__(self, index: int) -> IntOrNone:
         if index >= 0 and index < self.num_items:
