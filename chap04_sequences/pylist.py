@@ -1,3 +1,4 @@
+# Requires Python 3.7.*
 from __future__ import annotations
 from typing import List, Union, Iterator, Optional
 
