@@ -21,9 +21,7 @@ def selection_sort(seq: IntList) -> None:
 
 
 def main() -> None:
-    arr: IntList = [9, 1, 3]
-    selection_sort(seq=arr)
-    assert arr == [1, 3, 9]
+    pass
 
 
 if "__main__" == __name__:
