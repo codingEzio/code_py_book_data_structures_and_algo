@@ -3,9 +3,11 @@ from pylist import IntList
 
 
 def partition(seq: IntList, start: int, stop: int) -> int:
+    # Choose the 1st element as pivot (after randomized)
     pivot_index: int = start
     pivot: int = seq[pivot_index]
 
+    # Exclude the pivot and use the actual `stop` index
     i: int = start + 1
     j: int = stop - 1
 
@@ -41,6 +43,7 @@ def quick_sort(seq: IntList) -> None:
     j: int
     seq_len: int = len(seq)
 
+    # Randomize the whole list in order to get a good pivot (for >=, <=).
     for i in range(seq_len):
         j = random.randint(0, seq_len - 1)
         seq[i], seq[j] = seq[j], seq[i]  # swap seq[i] and seq[j]
