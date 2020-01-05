@@ -129,6 +129,19 @@ class LinkedList:
             new_node.ref = node.ref
             node.ref = new_node
 
+    def get_count(self):
+        if self.start_node is None:
+            return 0
+
+        node = self.start_node
+        count = 0
+
+        while node is not None:
+            count = count + 1
+            node = node.ref
+
+        return count
+
 
 def main():
     """Use debugger or pythontutor.com to see the detailed procedures"""
@@ -142,9 +155,11 @@ def main():
     ll.insert_at_start(1)
 
     ll.insert_after_item(10, 13)
-    ll.insert_befor_item(13, 11)
+    ll.insert_before_item(13, 11)
 
     ll.insert_at_index(5, 12)
+
+    assert ll.get_count() == 7
 
 
 if __name__ == "__main__":
