@@ -179,6 +179,46 @@ class LinkedList:
         # Make the next(ref) item as the start (not start_node but 1st one)
         self.start_node = self.start_node.ref
 
+    def delete_at_end(self):
+        if self.start_node is None:
+            print("The list has no element to delete")
+            return None
+
+        node = self.start_node
+
+        # Loop towards the end till the penultimate one (the last ref is None)
+        while node.ref.ref is not None:
+            node = node.ref
+
+        # Assign None to ref(next) of the penultimate item (=> del last item)
+        node.ref = None
+
+    def delete_item_by_value(self, existing_item):
+        if self.start_node is None:
+            print("The list has no element to delete")
+            return None
+
+        if self.start_node.item == existing_item:
+            self.start_node = self.start_node.ref
+            return None
+
+        node = self.start_node
+
+        # Loop the point where the next item would be the one you wanna del
+        while node.ref is not None:
+            if node.ref.item == existing_item:
+                break
+            node = node.ref
+
+        # Now the node should be at where the node you wanna delete (U, DEL)
+
+        # Didn't found anything after looping all the way through (-> end)
+        if node.ref is None:
+            print("Item not found in the list")
+        # e.g. delete 2 from [1,2,3], it's [1.next <- 1.next.next]
+        else:
+            node.ref = node.ref.ref
+
 
 def main():
     """Use debugger or pythontutor.com to see the detailed procedures"""
@@ -204,6 +244,12 @@ def main():
 
     ll.delete_at_start()
     assert ll.traverse_list() == [5, 10, 11, 12, 13, 15]
+
+    ll.delete_at_end()
+    assert ll.traverse_list() == [5, 10, 11, 12, 13]
+
+    ll.delete_item_by_value(11)
+    assert ll.traverse_list() == [5, 10, 12, 13]
 
 
 if __name__ == "__main__":
