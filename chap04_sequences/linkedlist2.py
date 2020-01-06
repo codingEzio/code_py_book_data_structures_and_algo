@@ -41,7 +41,7 @@ class LinkedList:
         else:
             node = self.start_node
             while node is not None:
-                print(f"{node.item} ")
+                print(f"{node.item} ", end="")
                 node = node.ref  # ref: ref to the next item
 
     def insert_at_start(self, data):
@@ -142,6 +142,33 @@ class LinkedList:
 
         return count
 
+    def search_item(self, existing_item):
+        """Return a boolean value to indicates whether found or not."""
+        if self.start_node is None:
+            print("List has no elements")
+            return None
+
+        node = self.start_node
+
+        while node is not None:
+            if node.item == existing_item:
+                print("Item found")
+                return True
+
+            node = node.ref
+
+        print("Item not found")
+
+        return False
+
+    def make_new_list_via_user_input(self):
+        numbers = int(input(">> How many nodes do you wanna create: "))
+        if numbers == 0:
+            return None
+        for i in range(numbers):
+            value = int(input(">> Enter the value for the node: "))
+            self.insert_at_end(value)
+
 
 def main():
     """Use debugger or pythontutor.com to see the detailed procedures"""
@@ -160,6 +187,10 @@ def main():
     ll.insert_at_index(5, 12)
 
     assert ll.get_count() == 7
+    assert ll.search_item(5) is True
+
+    ll.make_new_list_via_user_input()
+    ll.traverse_list()
 
 
 if __name__ == "__main__":
