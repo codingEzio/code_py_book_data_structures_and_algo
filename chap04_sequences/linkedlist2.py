@@ -1,4 +1,4 @@
-# Rename this file to 'linkedlist_stackabus' before you push to Github
+# https://stackabuse.com/linked-lists-in-detail-with-python-examples-single-linked-lists/
 
 __doc__ = """Basics
   Array is
@@ -46,6 +46,30 @@ class LinkedList:
                 all_nodes.append(node.item)
                 node = node.ref  # ref: ref to the next item
             return all_nodes
+
+    def reverse_list(self):
+        prev_node = None
+        node = self.start_node
+
+        # Take [5, 6, 7] as an example for the comments down below
+        # the details I described were based on the 1st execution :)
+        while node is not None:
+            # stores the NEXT_node, also gets all the consequent nodes
+            # EXAMPLE: next_node <= rest of [5], i.e. [6, 7]
+            next_node = node.ref
+            # "delete" the prev NEXT_node
+            # EXAMPLE: 5.ref <= None (only 5, the rest turns into None)
+            node.ref = prev_node
+            # assign current node to the inital `prev_node` (None)
+            # EXAMPLE: 5.ref == prev_node (only 5 (when 1st executed))
+            prev_node = node
+            # assign all the subsequent nodes to `node` (except `prev_node`)
+            # EXAMPLE: node <= 5.ref ([6, 7] -> node)
+            node = next_node
+
+        # What we are doing is basically re-assign the refs, especially for
+        # the initial `prev_node`.
+        self.start_node = prev_node
 
     def insert_at_start(self, data):
         new_node = Node(data)
@@ -250,6 +274,9 @@ def main():
 
     ll.delete_item_by_value(11)
     assert ll.traverse_list() == [5, 10, 12, 13]
+
+    ll.reverse_list()
+    assert ll.traverse_list() == [13, 12, 10, 5]
 
 
 if __name__ == "__main__":
