@@ -29,9 +29,10 @@ class LinkedList:
         last node -> half data, half ref to None (a cond to stop)
         """
         # Explanations of common-used statements
-        # >> node.ref                        old(at right), new(at left)
+        # >> node.ref                        right(next item), left(next is ?)
+        # >> self.start_node                 no item (point to 1st real one)
         # >> node = self.start_node          giving a start to loop through
-        # >> new_node.ref = self.start_node  same head|tail when only 1 elem
+        # >> new_node.ref = self.start_node  the next(ref) item is RIGHT_SIDE
         self.start_node = None
 
     def traverse_list(self):
@@ -39,10 +40,12 @@ class LinkedList:
             print("List has no element")
             return None
         else:
+            all_nodes = []
             node = self.start_node
             while node is not None:
-                print(f"{node.item} ", end="")
+                all_nodes.append(node.item)
                 node = node.ref  # ref: ref to the next item
+            return all_nodes
 
     def insert_at_start(self, data):
         new_node = Node(data)
@@ -65,7 +68,7 @@ class LinkedList:
 
     def insert_after_item(self, existing_item, data):
         node = self.start_node
-        print(f"{node.ref}")
+        # print(f"{node.ref}")
 
         # Loop to the location we wanna insert into (unlike list XD)
         while node is not None:
@@ -94,7 +97,7 @@ class LinkedList:
             return None
 
         node = self.start_node
-        print(f"{node.ref}")
+        # print(f"{node.ref}")
 
         while node.ref is not None:
             if node.ref.item == existing_item:
@@ -152,13 +155,12 @@ class LinkedList:
 
         while node is not None:
             if node.item == existing_item:
-                print("Item found")
+                # print("Item found")
                 return True
 
             node = node.ref
 
-        print("Item not found")
-
+        # print("Item not found")
         return False
 
     def make_new_list_via_user_input(self):
@@ -168,6 +170,14 @@ class LinkedList:
         for i in range(numbers):
             value = int(input(">> Enter the value for the node: "))
             self.insert_at_end(value)
+
+    def delete_at_start(self):
+        if self.start_node is None:
+            print("The list has no element to delete")
+            return None
+
+        # Make the next(ref) item as the start (not start_node but 1st one)
+        self.start_node = self.start_node.ref
 
 
 def main():
@@ -189,8 +199,11 @@ def main():
     assert ll.get_count() == 7
     assert ll.search_item(5) is True
 
-    ll.make_new_list_via_user_input()
-    ll.traverse_list()
+    # ll.make_new_list_via_user_input()
+    assert ll.traverse_list() == [1, 5, 10, 11, 12, 13, 15]
+
+    ll.delete_at_start()
+    assert ll.traverse_list() == [5, 10, 11, 12, 13, 15]
 
 
 if __name__ == "__main__":
