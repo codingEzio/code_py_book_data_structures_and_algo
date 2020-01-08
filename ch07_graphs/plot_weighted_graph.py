@@ -5,7 +5,8 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-Graph = nx.Graph()
+# Graph = nx.Graph()
+Graph = nx.DiGraph(directed=True)
 
 edges = (
     ("a", "b", 7),
@@ -34,19 +35,19 @@ pos = nx.spring_layout(Graph)  # positions for all nodes
 nx.draw_networkx_nodes(Graph, pos, node_size=700)
 
 # edges
-nx.draw_networkx_edges(Graph, pos, edgelist=elarge, width=6)
+nx.draw_networkx_edges(Graph, pos, edgelist=elarge, width=3)
 nx.draw_networkx_edges(
     Graph,
     pos,
     edgelist=esmall,
-    width=6,
+    width=3,
     alpha=0.5,
     edge_color="b",
     style="dashed",
 )
 
 # labels
-nx.draw_networkx_labels(Graph, pos, font_size=20, font_family="sans-serif")
+nx.draw_networkx_labels(Graph, pos, font_size=15, font_family="sans-serif")
 
 weight_labels = nx.get_edge_attributes(Graph, "weight")
 nx.draw_networkx_edge_labels(Graph, pos, weight_labels)
@@ -54,4 +55,4 @@ nx.draw_networkx_edge_labels(Graph, pos, weight_labels)
 plt.axis("off")
 
 # plt.show()
-plt.savefig(fname="./images/weighted_graph.png", dpi=350)
+plt.savefig(fname="./images/weighted_graph.png", dpi=230)
