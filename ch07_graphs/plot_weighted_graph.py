@@ -1,4 +1,6 @@
-# Ref: https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_weighted_graph.html
+# References:
+# https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_weighted_graph.html
+# https://stackoverflow.com/questions/56597840/drawing-weighted-graph-from-adjacency-matrix-with-edge-labels
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -45,6 +47,9 @@ nx.draw_networkx_edges(
 
 # labels
 nx.draw_networkx_labels(Graph, pos, font_size=20, font_family="sans-serif")
+
+weight_labels = nx.get_edge_attributes(Graph, "weight")
+nx.draw_networkx_edge_labels(Graph, pos, weight_labels)
 
 plt.axis("off")
 
