@@ -1,3 +1,6 @@
+### Confusions
+- [*Pre-order traversal* versus *Depth-first search*](https://softwareengineering.stackexchange.com/questions/227779/is-pre-order-traversal-same-as-depth-first-search)
+
 ### Terminology summary <small>([*ref*](https://www.freecodecamp.org/news/all-you-need-to-know-about-tree-data-structures-bceacb85490c/))</small>
 - *Root* is the topmost `node` of the tree
 - *Edge* is the link between two `nodes`
