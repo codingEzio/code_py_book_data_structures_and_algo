@@ -1,5 +1,7 @@
 # Ref: https://www.freecodecamp.org/news/all-you-need-to-know-about-tree-data-structures-bceacb85490c/
 
+from queue import Queue
+
 
 class BinaryTree:
     def __init__(self, value):
@@ -61,6 +63,27 @@ class BinaryTree:
 
         print(self.value)
 
+    def breadth_first_search(self):
+        """
+        A
+        B D
+        C E F   => A, B, D, C, E, F (level by level)
+        """
+        queue = Queue()
+        queue.put(self)
+
+        while not queue.empty():
+            current_node = queue.get()
+            print(current_node.value)
+
+            if current_node.left_child:
+                queue.put(current_node.left_child)
+
+            if current_node.right_child:
+                queue.put(current_node.right_child)
+
+        return queue
+
 
 def are_my_nodes_in_the_right_place(root_node) -> bool:
     """
@@ -113,6 +136,8 @@ def main() -> None:
     # root.pre_order()  # Expected: A B C D E F G H
     # root.in_order()   # Expected: D C B E A G F H
     # root.post_order() # Expected: D C E B G H F A
+
+    root.breadth_first_search()
 
 
 if "__main__" == __name__:

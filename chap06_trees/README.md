@@ -10,8 +10,8 @@
 ### Types of *search*
 - *Depth-First* Search <small>(aka. DFS)</small>
     - It is an algorithm for *traversing* or *searching* <u>tree data structure</u>
-        - Principle \#1: one starts at the root & explores AFAP along each branch before backtracking
-        - Principle \#2: the process is the *same* as the <u>pre-order traversal</u>
+        > 1) one starts at the root & explores AFAP along each branch before backtracking<br>
+        > 2) the process is the *same* as the <u>pre-order traversal</u>
     - Types of *tree traversals*
         - `pre-order`
             > TOP -> LEFT -> LEFT .. THE_REST -> RIGHT -> LEFT .. THE_REST
@@ -21,4 +21,9 @@
 
         - `post-order`
             > BOTTOM -> LEFT|RIGHT|MIDDLE -> LEFT|MIDDLE|RIGHT -> .. TOP
--
+
+- *Breadth-First* Search <small>(aka. BFS)</small>
+    - It is an algorithm for *traversing* or *searching* <u>tree data structure</u>
+        > <q>it starts at the tree root & explores explores the neighbor nodes first, before
+        moving to the next level neighbours</q>
+        >> ![Example of DFS and BFS](./images/example_of_DFS_BFS.jpg)
