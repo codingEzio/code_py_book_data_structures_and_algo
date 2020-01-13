@@ -1,5 +1,5 @@
 
-### The idea
+### The idea of *bloom filter*
 - Making *test membership in a set* **quicker**. That means two things:
     - Less queries to the *server*, let most of the stuff happen in the *client*
     - Less interaction <small>(cuz the less operations made by the algorithm)</small> to the *disk*
@@ -11,7 +11,7 @@
     2. Used when the data is **really large** and you need search it, whereas small error rate is *accepted*.
     3. Is it *in it* or *not*?
 
-### How does it work <small>(my own notes/thoughts)</small>
+### How does *bloom filter* work <small>(my own notes/thoughts)</small>
 - Stage zero
     - Instead of using mostly-used-for-arrays algorithms, we use *fast hash stuff* and *low-cost operations* <small>(like switching `0` and `1` in a *bit array*)</small>.
     - But of course, we made some trade-offs, such as, the bits cannot be *removed* and the algorithm won't be *100% correct*.
@@ -55,3 +55,7 @@
     3. More on this
         - [What are Bloom filters?](https://blog.medium.com/what-are-bloom-filters-1ec2a50c68ff)
         - [ Simple Bloom filter implementation in Python 3 (for use with the HIBP password list)](https://gist.github.com/marcan/23e1ec416bf884dcd7f0e635ce5f2724)
+- *Trie*
+    1. [Trying to Understand Tries](https://medium.com/basecs/trying-to-understand-tries-3ec6bede0014) <small>([*Vaidehi Joshi*](https://medium.com/@vaidehijoshi))</small>
+    2. [An implementation on Github](https://github.com/ZoranPandovski/al-go-rithms/tree/master/data_structures/trie)
+    3. [Trie on Wikipedia](https://en.wikipedia.org/wiki/Trie)
