@@ -37,7 +37,7 @@ class Heap:
 class MaxHeap(Heap):
     def __init__(self):
         self.array = [INFINITY]
-        self.size = 0
+        self.array_size = 0
 
     def insert(self, elem):
         self.array.append(elem)
@@ -60,8 +60,8 @@ class MaxHeap(Heap):
         root_node = self.get_root_node()
 
         self.array[1] = self.array.pop()
-        self.size -= 1
-        self.max_heapify(1)
+        self.array_size -= 1
+        self.heapify(1)
 
         return root_node
 
@@ -87,6 +87,6 @@ class MaxHeap(Heap):
         if largest_index != index:
             self.array[index], self.array[largest_index] = (
                 self.array[largest_index],
-                self.array[index]
+                self.array[index],
             )
             self.heapify(largest_index)
