@@ -35,6 +35,9 @@ class Heap:
 
 
 class MaxHeap(Heap):
+    """p.s. We have only implemented the most basic methods.
+    """
+
     def __init__(self):
         self.array = [INFINITY]
         self.array_size = 0
@@ -45,15 +48,16 @@ class MaxHeap(Heap):
 
         current_index = self.array_size
 
-        BISECTED_INDEX = self.parent(current_index)
-        while elem > self.array[BISECTED_INDEX]:
-            self.array[current_index], self.array[BISECTED_INDEX] = (
-                self.array[BISECTED_INDEX],
+        while elem > self.array[self.parent(current_index)]:
+            self.array[current_index], self.array[
+                self.parent(current_index)
+            ] = (
+                self.array[self.parent(current_index)],
                 self.array[current_index],
             )
-            current_index = BISECTED_INDEX
+            current_index = self.parent(current_index)
 
-    def pop_max(self):
+    def extract_max(self):
         """
         Delete and return the biggest element (root node).
         """
@@ -61,14 +65,15 @@ class MaxHeap(Heap):
 
         self.array[1] = self.array.pop()
         self.array_size -= 1
-        self.heapify(1)
+        self._heapify(1)
 
         return root_node
 
-    def heapify(self, index):
+    def _heapify(self, index):
         """
-        Transform list into a heap in-place, the transformed result should conform the
-        rules I've mentioned in the notes.
+        This is the recursive method used in 'extract_max()'. It transform list
+        into a heap in-place, the result should conform to the rules I've
+        mentioned in the README file.
         """
         largest_index = index
 
@@ -89,4 +94,24 @@ class MaxHeap(Heap):
                 self.array[largest_index],
                 self.array[index],
             )
-            self.heapify(largest_index)
+            self._heapify(largest_index)
+
+
+def main() -> None:
+    hp = MaxHeap()
+
+    hp.insert(10)
+    hp.insert(40)
+    hp.insert(50)
+    hp.insert(20)
+    hp.insert(70)
+    hp.insert(110)
+    hp.insert(30)
+    hp.insert(1000)
+    hp.insert(5)
+
+    assert hp.extract_max() == 1000
+
+
+if "__main__" == __name__:
+    main()
