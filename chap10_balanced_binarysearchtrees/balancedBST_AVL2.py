@@ -30,6 +30,9 @@ class AVLNode(object):
         """
         The '_make_ascii_art' was purely used for demonstrations.
         It could be replaced with simple 'repr(self)' actually.
+
+        For alternative solutions, go see this website for visualizations:
+        ~ https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
         """
         return "\n".join(self._make_ascii_art()[0])
 

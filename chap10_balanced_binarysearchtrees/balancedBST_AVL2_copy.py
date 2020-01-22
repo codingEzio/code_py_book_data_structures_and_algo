@@ -28,7 +28,10 @@ class AVLNode(object):
         self.right = None
 
     def __str__(self):
-        """Modified in order to work with pythontutor.com (reduce exec steps).
+        """
+        Modified in order to work with pythontutor.com (reduce exec steps).
+        For alternative solutions, go see this website for visualizations:
+        ~ https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
         """
         return repr(self)
 
