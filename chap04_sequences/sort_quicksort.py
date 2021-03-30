@@ -7,28 +7,31 @@ def partition(seq, start, stop):
     """
     pivot_index = start
     pivot = seq[pivot_index]
-    i = start + 1
-    j = stop - 1
+    sublist_start = start + 1
+    sorted_last_el = stop - 1
 
-    while i <= j:
+    while sublist_start <= sorted_last_el:
 
-        while i <= j and not pivot < seq[i]:
-            i += 1
+        # notes on switching the '>=' to '<' (and the elements of course)
+        #   benefits        only the `__lt__` needs to be implemented
+        #   alternative     `while .. and not pivot < seq[sublist_start]`
+        while sublist_start <= sorted_last_el and pivot >= seq[sublist_start]:
+            sublist_start += 1
 
-        while i <= j and pivot < seq[j]:
-            j -= 1
+        while sublist_start <= sorted_last_el and pivot < seq[sorted_last_el]:
+            sorted_last_el -= 1
 
-        if i < j:
-            tmp = seq[i]
-            seq[i], seq[j] = seq[j], tmp
+        if sublist_start < sorted_last_el:
+            tmp = seq[sublist_start]
+            seq[sublist_start], seq[sorted_last_el] = seq[sorted_last_el], tmp
 
-            i += 1
-            j -= 1
+            sublist_start += 1
+            sorted_last_el -= 1
 
-    seq[pivot_index] = seq[j]
-    seq[j] = pivot
+    seq[pivot_index] = seq[sorted_last_el]
+    seq[sorted_last_el] = pivot
 
-    return j
+    return sorted_last_el
 
 
 def quicksort_recursive(seq, start, stop):
@@ -50,13 +53,23 @@ def quicksort_recursive(seq, start, stop):
     #           more than two   continue the recursion
     pivot_index = partition(seq, start, stop)
 
+    # recur -> recur -> RETURN
+    #   -> RECUR            NEXT    some values being returned (None or else)
+    #   -> RECUR next line  NEXT    the previous call stack is cleared
     quicksort_recursive(seq, start, pivot_index)
+
+    # encounter a return   -> exec this line (in recursion) (⭐️)
+    # clear the call stack -> exec this line (not in recur)
     quicksort_recursive(seq, pivot_index + 1, stop)
 
 
 def quicksort(seq):
     """
     O(N logN)
+
+    O(N^2) if a bad pivot is chosen or is/is-nearly sorted
+        i.e. expected: ~middle, imagined-scenario: a really big/small number
+        normally there won't be any problems after pre-randomizing the list
 
     The point of picking a pivot is
     - the pivot is in its final location (won't move anywhere else)
@@ -79,7 +92,7 @@ def main():
     """
     Understanding of different parts
     - recursion         100%
-    - incr in partition meh
+    - incr in partition better
     """
     d, d_sorted = [17, 2, 9, 70, 6, 11, 5], [2, 5, 6, 9, 11, 17, 70]
     quicksort(d)
