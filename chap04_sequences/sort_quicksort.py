@@ -99,5 +99,9 @@ def main():
     assert d == d_sorted
 
 
+# references
+#   concept with examples
+#       https://www.reddit.com/r/explainlikeimfive/comments/lb7w1/eli5_how_in_the_hell_does_quicksort_work/c2r9isp/
+
 if __name__ == "__main__":
     main()
