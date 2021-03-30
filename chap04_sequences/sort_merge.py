@@ -35,6 +35,24 @@ def merge_sort_recursive(seq, start, stop):
 
     mid = (start + stop) // 2
 
+    # It's all about these tree lines.
+    #   Once the recursion starts (take the 1st recursion for example)
+    #       only `return` would 'allow' the computer to move to the next line
+    #           multiple unfinished line would be pushed onto the call stack
+    #               non-None return -> function remain on the call stack
+    #                   None return -> poped off the call stack
+    #   If all the call stack (1st recursion) have been poped off
+    #       then it proceeds to the next line
+    #           FAKE next   the one in the recursion (after a `None` return)
+    #           REAL next   next series of recursion
+    #   Simply put
+    #       Recursion
+    #           -> Stacked Call Stack (stuck in the same line)
+    #           -> Processing the functions remained on the call stack
+    #           -> Return/Popping the remained functions on the stack
+    #       Next line
+    #           -> Actual next line (✔️) VS Line inside recursion
+    #           -> Repeat the previous steps if it's a recursion (again :P)
     merge_sort_recursive(seq, start, mid)
     merge_sort_recursive(seq, mid, stop)
 
@@ -55,7 +73,9 @@ def merge_sort(seq):
 
 def main():
     """
-    Not 100% percent get this algorithm, but nearly done :)
+    Understanding of different parts
+    - recursion     100%
+    - merge         meh
     """
     d, d_sorted = [3, 7, 9, 40, 1, 13, 10], [1, 3, 7, 9, 10, 13, 40]
     merge_sort(d)
