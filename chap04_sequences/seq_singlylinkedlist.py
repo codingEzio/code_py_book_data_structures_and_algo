@@ -16,9 +16,6 @@ class SinglyLinkedList:
         """
         self.head = head
 
-    def __len__(self):
-        pass
-
     def index(self, value):
         """
         O(N)
@@ -94,19 +91,64 @@ class SinglyLinkedList:
 
         raise IndexError("SinglyLinkedList assignment index out of range")
 
+    def __len__(self):
+        """
+        O(N)
+        """
+        length = 0
+        current_node = self.head
+
+        # two scenarios
+        #   directly return 0 if the Linked List is null (i.e. head=None)
+        #   loop through via `next` to last element then stop (head=None)
+        while current_node:
+            length += 1
+            current_node = current_node.next
+
+        return length
+
     def __iter__(self):
+        """
+        O(N)
+        """
+        current_node = self.head
+
+        while current_node:
+            yield current_node
+
+            # Just like a for/while loop but with a "stopper" in it (next-None)
+            current_node = current_node.next
+
+    def append(self, value):
+        """
+        O(N)
+        """
+        new_node = Node(value)
+
+        # If there isn't anything at the beginning (i.e. a blank Linked List),
+        # simply put this node in there (replace the dummy with this new node)
+        if self.head is None:
+            self.head = new_node
+            return None
+
+        # If there is something at the beginning, set the starting point there
+        current_node = self.head
+
+        # Loop the node to the last one, then assign the new node to its `next`
+        while current_node.next:
+            current_node = current_node.next
+        current_node.next = new_node
+
+    def reverse(self):
+        """
+        O(N)
+        """
         pass
 
     def insert_before(self):
         pass
 
-    def append(self):
-        pass
-
     def pop(self):
-        pass
-
-    def reverse(self):
         pass
 
 
