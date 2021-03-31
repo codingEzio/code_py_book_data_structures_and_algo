@@ -179,6 +179,24 @@ class HashSet:
 
         return False
 
+    def __getitem__(self, item):
+        """
+        O(?)
+
+        This method is specifically written for the external `HashMap` to use.
+        The `HashSet` class itself does NOT require this method to work.
+        """
+        idx = hash(item) % len(self.items)
+
+        while self.items[idx] is not None:
+            if self.items[idx] == item:
+                return self.items[idx]
+
+            # TODO document this
+            idx = (idx + 1) % len(self.items)
+
+        return None
+
     def __iter__(self):
         """
         O(?)
