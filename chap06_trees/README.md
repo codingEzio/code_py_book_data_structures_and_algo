@@ -1,3 +1,13 @@
+### Chapter Goals
+> This chapter introduces trees and some algorithms that use trees. By the end of the chapter you should be able to answer these questions.
+- How are trees constructed?
+- How can we traverse a tree?
+- How are expressions and trees related?
+- What is a binary search tree?
+- Under what conditions is a binary search tree useful?
+- What is depth first search and how does it relate to trees and search problems? - What are the three types of tree traversals we can do on binary trees?
+- What is a grammar and what can we do with a grammar?
+
 ### Confusions
 - [*Pre-order traversal* versus *Depth-first search*](https://softwareengineering.stackexchange.com/questions/227779/is-pre-order-traversal-same-as-depth-first-search)
 
