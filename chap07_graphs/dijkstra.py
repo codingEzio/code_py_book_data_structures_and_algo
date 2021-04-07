@@ -1,4 +1,5 @@
 # Ref: https://dev.to/mxl/dijkstras-algorithm-in-python-algorithms-for-beginners-dkc
+from data import edges_with_weights as edges
 
 from collections import deque, namedtuple
 from math import inf
@@ -25,8 +26,7 @@ class Graph:
 
     @property
     def vertices(self):
-        """Return a set of strings that stands for vertices/nodes.
-        """
+        """Return a set of strings that stands for vertices/nodes."""
         return set(sum(([edge.start, edge.end] for edge in self.edges), []))
 
     @property
@@ -137,19 +137,7 @@ class Graph:
 
 
 def main() -> None:
-    graph = Graph(
-        [
-            ("a", "b", 7),
-            ("a", "c", 9),
-            ("a", "f", 14),
-            ("b", "c", 10),
-            ("b", "d", 15),
-            ("c", "d", 11),
-            ("c", "f", 2),
-            ("d", "e", 6),
-            ("e", "f", 9),
-        ]
-    )
+    graph = Graph(edges)
 
     assert graph.dijkstra("a", "e") == deque(["a", "c", "d", "e"])
 

@@ -1,24 +1,13 @@
 # References:
 # https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_weighted_graph.html
 # https://stackoverflow.com/questions/56597840/drawing-weighted-graph-from-adjacency-matrix-with-edge-labels
+from data import edges_with_weights as edges
 
 import matplotlib.pyplot as plt
 import networkx as nx
 
 # Graph = nx.Graph()
 Graph = nx.DiGraph(directed=True)
-
-edges = (
-    ("a", "b", 7),
-    ("a", "c", 9),
-    ("a", "f", 14),
-    ("b", "c", 10),
-    ("b", "d", 15),
-    ("c", "d", 11),
-    ("c", "f", 2),
-    ("d", "e", 6),
-    ("e", "f", 9),
-)
 
 for orig, dest, weight in edges:
     Graph.add_edge(orig, dest, weight=weight)
